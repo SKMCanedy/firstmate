@@ -1,0 +1,49 @@
+.process-card{
+    color: red;
+    border: 1px dotted blue;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.process-delete{
+    float: right;
+    font-size: 1rem;
+}
+
+.process-desc{
+    display: inline-block;
+    width: 85%;
+    border: 1px black dashed;
+    padding: .25rem;
+}
+
+/* --- Responsive Design --- */
+
+@media only screen and (min-width: 640px) {
+
+}
+
+@media only screen and (min-width: 800px) {
+    .process-desc{
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width : 992px) {
+    .process-desc{
+        width: 85%;
+    }
+}
+
+
+@media only screen and (min-width : 1200px) {
+
+
+}
+
+@media only screen and (min-width : 1400px) {
+    .process-desc{
+        width: 90%;
+    }
+
+}
