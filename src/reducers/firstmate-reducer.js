@@ -1,7 +1,7 @@
 import * as actions from "../actions";
 
 const initialState = {
-    id: "",
+    id: "5b7ce32657a288a4134d45a0",
     tasks: {
         "task1":{id:"task1", content: "Practice Process 1"},
         "task2":{id:"task2", content: "Practice Process 2"},
@@ -32,12 +32,18 @@ const initialState = {
 }
 
 const firstmateReducer = (state=initialState, action)=>{
+
+    //---Landing Page Actions---
+
     if (action.type === actions.LOGIN_SUCCESS){
         return Object.assign({}, state, {
             authenticated: true
         });
     }
 
+    //---Board Actions---
+
+    //Drag and Drop actions
     if (action.type === actions.DND_END_SAME_COLUMN){
         const dndResults = action.dndResults;
         const start = action.start;
@@ -97,6 +103,19 @@ const firstmateReducer = (state=initialState, action)=>{
         });
     }
 
+    //User Actions
+    if (action.type === actions.ADD_TASK){
+        //takes new task and puts into process bank (task1)
+    }
+    if (action.type === actions.ADD_COLUMN){
+        //takes new column (staff card) and put on screen
+    }
+    
+    //---Server Interactions--
+    if (action.type === actions.UPDATE_SERVER_BOARD){
+        console.log(state)
+        //add post connection to api/board
+    }
     
     return state;
     

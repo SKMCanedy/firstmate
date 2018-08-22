@@ -26,3 +26,25 @@ export const dndEndNewColumn= (dndResults, start, finish)=>({
     start,
     finish
 })
+
+//User Actions
+
+export const ADD_TASK = "ADD_TASK";
+export const addTask = (values)=>({
+    type: ADD_TASK,
+    values
+})
+
+export const ADD_COLUMN = "ADD_COLUMN";
+export const addColumn = (values)=>({
+    type: ADD_COLUMN,
+    values
+})
+
+
+//---Server Interactions---
+
+export const UPDATE_SERVER_BOARD = "UPDATE_SERVER_BOARD";
+export const updateServerBoard= ()=>({
+    type: UPDATE_SERVER_BOARD
+})
