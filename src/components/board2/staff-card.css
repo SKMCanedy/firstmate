@@ -1,8 +1,19 @@
+.staff-container{
+    margin: 8px;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+}
+
 .staff-card {
     border: green solid 3px;
     margin-top: 1rem;
     padding-left: .25rem;
     padding-right: .25rem;
+    flex-grow: 1;
+    min-height: 8rem;
 }
 
 /* --- Responsive Design --- */

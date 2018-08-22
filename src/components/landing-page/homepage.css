@@ -16,17 +16,19 @@
     display: inline-block;
     margin: auto auto;
     font-size: 1.5rem;
-    
 }
 
 .navbar {
     width: 100vw;
     text-align: right;
     font-size: 1.25rem;
-
 }
 
-.scroll-item {
+.scroll-up {
+    margin-top: 0;
+}
+
+.scroll-down {
     margin-bottom: 0;
 }
 
