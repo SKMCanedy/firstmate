@@ -1,33 +1,34 @@
 import * as actions from "../actions";
 
 const initialState = {
+    id: "",
     tasks: {
-        "process-1":{id:"process-1", content: "Practice Process 1"},
-        "process-2":{id:"process-2", content: "Practice Process 2"},
-        "process-3":{id:"process-3", content: "Practice Process 3"},
-        "process-4":{id:"process-4", content: "Practice Process 4"},
+        "task1":{id:"task1", content: "Practice Process 1"},
+        "task2":{id:"task2", content: "Practice Process 2"},
+        "task3":{id:"task3", content: "Practice Process 3"},
+        "task4":{id:"task4", content: "Practice Process 4"},
     },
 
     columns: {
-        "staff-1": {
-            id:"staff-1",
+        "column1": {
+            id:"column1",
             title: "Process Bank",
-            taskIds: ["process-1", "process-2", "process-3", "process-4"] 
+            taskIds: ["task1", "task2", "task3", "task4"] 
         },
-        "staff-2": {
-            id:"staff-2",
-            title: "Bob",
+        "column2": {
+            id:"column2",
+            title: "Practice Staff 1",
             taskIds: [] 
         },
-        "staff-3": {
-            id:"staff-3",
-            title: "Sally",
+        "column3": {
+            id:"column3",
+            title: "Practice Staff 2",
             taskIds: [] 
         },
 
     },
 
-    columnOrder: ["staff-1", "staff-2", "staff-3"]
+    columnOrder: ["column1", "column2", "column3"]
 }
 
 const firstmateReducer = (state=initialState, action)=>{
@@ -56,11 +57,9 @@ const firstmateReducer = (state=initialState, action)=>{
         }
 
         return Object.assign({}, state, {
-            base: {
-                columns: {
-                    ...state.columns,
-                    [newColumn.id]: newColumn
-                }
+            columns: {
+                ...state.columns,
+                [newColumn.id]: newColumn
             }
         });
     }
@@ -90,12 +89,10 @@ const firstmateReducer = (state=initialState, action)=>{
         };
 
         return Object.assign({}, state, {
-            base: {
-                columns: {
-                    ...this.state.columns,
-                    [newStart.id]: newStart,
-                    [newFinish.id]: newFinish
-                }
+            columns: {
+                ...state.columns,
+                [newStart.id]: newStart,
+                [newFinish.id]: newFinish
             }
         });
     }
