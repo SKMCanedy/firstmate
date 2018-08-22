@@ -28,7 +28,12 @@ const initialState = {
 
     },
 
-    columnOrder: ["column1", "column2", "column3"]
+    columnOrder: ["column1", "column2", "column3"],
+
+    modalStatus: {
+        showModal: false,
+        modalType: ""
+    }
 }
 
 const firstmateReducer = (state=initialState, action)=>{
@@ -104,8 +109,43 @@ const firstmateReducer = (state=initialState, action)=>{
     }
 
     //User Actions
+    if (action.type === actions.OPEN_MODAL){
+        console.log("Open Modal action worked!")
+        return Object.assign({}, state, {
+            modalStatus: {
+                showModal: true,
+                modalType: action.modalType
+            }
+        });
+    }
+
+    if (action.type === actions.CLOSE_MODAL){
+        console.log("Close Modal action worked!")
+        return Object.assign({}, state, {
+            modalStatus: {
+                showModal: false,
+                modalType: ""
+            }
+        });
+    }
+
     if (action.type === actions.ADD_TASK){
         //takes new task and puts into process bank (task1)
+        console.log("Add Task action worked!");
+        const taskIndex = Object.keys(state.tasks).length + 1;
+        const newTask = 'task' + taskIndex;
+        // return Object.assign({}, state, {});
+        return Object.assign({}, state, {
+            tasks: {
+               ...state.tasks,
+               [newTask]:{id: newTask, content: action.values.newTask},
+            },
+            columns: {
+                "column1": {
+                    taskIds: [...state.columns.column1.taskIds, newTask] 
+                }
+            }
+        });
     }
     if (action.type === actions.ADD_COLUMN){
         //takes new column (staff card) and put on screen

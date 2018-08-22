@@ -45,7 +45,6 @@ export class Login extends React.Component {
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
-                {/* {successMessage} */}
                 <Field
                     name="loginUsername"
                     type="text"
