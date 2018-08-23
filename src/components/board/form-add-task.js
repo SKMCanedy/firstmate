@@ -6,20 +6,27 @@ import { required, nonEmpty } from '../../form-validators';
 import { addTask } from "../../actions";
 
 export class AddTaskForm extends React.Component {
-    onSubmit(values) {
-        this.props.dispatch(addTask(values));
-        this.props.dispatch(reset('addTaskForm'))
+    state = { 
+        successMessage:""
     }
 
-    render() {
-        let successMessage;
-        if (this.props.submitSucceeded) {
-            successMessage = (
+    onSubmit(values) {
+        this.props.dispatch(addTask(values))
+        this.setState(
+            {successMessage:(
                 <div>
                     Success! New process added.
                 </div>
-            )}
-        
+            )})
+        this.props.dispatch(reset('addTaskForm'))
+    }
+
+    clearSuccessMessage=()=>{
+        this.setState(
+            {successMessage:""})
+    }
+
+    render() {
         return (
             <form
                 onSubmit={this.props.handleSubmit(values =>
@@ -32,6 +39,7 @@ export class AddTaskForm extends React.Component {
                     component={Input}
                     label="New Process"
                     validate={[required, nonEmpty]}
+                    onFocus={this.clearSuccessMessage}
                 />
                 <button 
                     type="reset" 
@@ -44,7 +52,7 @@ export class AddTaskForm extends React.Component {
                     disabled={this.props.pristine || this.props.submitting}>
                     Submit
                 </button>
-                {successMessage}
+                {this.state.successMessage}
             </form>
         );
     }

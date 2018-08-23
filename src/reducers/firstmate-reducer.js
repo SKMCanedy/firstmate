@@ -148,6 +148,11 @@ const firstmateReducer = (state=initialState, action)=>{
         });
     }
 
+    if (action.type === actions.DELETE_TASK){
+        console.log("Delete Task action worked")
+        return Object.assign({}, state, {})
+    }
+
     if (action.type === actions.ADD_COLUMN){
         //takes new column (staff card) and put on screen
         console.log("Add Column action worked!");
@@ -190,7 +195,8 @@ const firstmateReducer = (state=initialState, action)=>{
     
     //---Server Interactions--
     if (action.type === actions.UPDATE_SERVER_BOARD){
-        console.log(state)
+        console.log("Update Server Board action worked")
+        console.log(action.currentTask)
         //add post connection to api/board
     }
     

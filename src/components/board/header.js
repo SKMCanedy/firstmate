@@ -26,12 +26,17 @@ export class Header extends React.Component {
         this.props.dispatch(openModal("columnModal"));
     }
 
+
+
     resetTasks = ()=>{
         console.log("Reset Tasks Called");
-        // this.props.dispatch(resetBoard());
         this.props.dispatch(openModal("resetConfirmation"));        
     }
-    
+
+    logout = ()=>{
+        this.props.dispatch(openModal("logout"));     
+    }
+
     render(){
         return(
             <div>
@@ -40,7 +45,7 @@ export class Header extends React.Component {
                 <Button type="button" onClick={this.callTaskModal}>Add Process</Button>
                 <Button type="button" onClick={this.callColumnModal}>Add Staff</Button>
                 <Button type="button" onClick={this.resetTasks}>Reset Processes</Button>
-                <div>Logout</div>
+                <Button type="button" onClick={this.logout}>Logout</Button>
                 {this.props.showModal && <Modal />}
             </div>
         )
@@ -52,3 +57,42 @@ const mapStateToProps = state => ({
   });
   
 export default connect(mapStateToProps)(Header);
+
+
+// callTaskModal= ()=>{
+//     console.log("Calling Task Modal");
+//     this.props.dispatch(openModal("taskModal"));
+// }
+
+// callColumnModal= ()=>{
+//     console.log("Calling Column Modal");
+//     this.props.dispatch(openModal("columnModal"));
+// }
+
+
+
+// resetTasks = ()=>{
+//     console.log("Reset Tasks Called");
+//     this.props.dispatch(openModal("resetConfirmation"));        
+// }
+
+// logout = ()=>{
+//     this.props.dispatch(openModal("logout"));     
+// }
+
+// render(){
+//     function callModalOpen(callType){
+//         this.props.dispatch(openModal(callType))
+//     }
+//     return(
+//         <div>
+//             <img src={logo} alt="ship wheel"/>
+//             <h1>Firstmate</h1>
+//             <Button type="button" onClick={this.callTaskModal}>Add Process</Button>
+//             <Button type="button" onClick={this.callColumnModal}>Add Staff</Button>
+//             <Button type="button" onClick={this.resetTasks}>Reset Processes</Button>
+//             <Button type="button" onClick={this.logout}>Logout</Button>
+//             {this.props.showModal && <Modal />}
+//         </div>
+//     )
+// }

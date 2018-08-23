@@ -11,9 +11,15 @@ export class Confirmation extends React.Component {
 
     determineType=()=>{
         const confirmType = this.props.confirmType;
-        if (confirmType === "reset"){
+        if (confirmType === "resetConfirmation"){
             this.props.dispatch(resetBoard())
             this.props.dispatch(closeModal())
+        }
+
+        if (confirmType === "logout"){
+            localStorage.setItem("token", "");
+            this.props.dispatch(closeModal())
+            window.location.replace("http://localhost:3000");
         }
     }
 

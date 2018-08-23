@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 
+import { deleteTask } from "../../actions";
+
 const Container = styled.div`
     border: 1px solid red;
     border-radius: 15px;
@@ -11,10 +13,21 @@ const Container = styled.div`
     background-color: ${props => (props.isDragging ? "lightgreen" : "white")};
 `;
 
+const DeleteButton = styled.button`
+    float: right;
+`
+
 export class Task extends Component{
+    
+    callDeleteTask=(taskId)=>{
+        console.log(taskId)
+        this.props.dispatch(deleteTask(taskId))
+    }
+
     render(){
         const taskKey = this.props.currentTask
         const currentTask = this.props.tasks[taskKey];
+        const buttonName = "button-"+ taskKey;
 
         return(
             <Draggable draggableId={currentTask.id} index={this.props.index}>
@@ -26,6 +39,7 @@ export class Task extends Component{
                         isDragging={snapshot.isDragging}
                     >
                         {currentTask.content}
+                        <DeleteButton name={buttonName} onClick={()=>this.callDeleteTask(currentTask.id)}>X</DeleteButton>
                     </Container>
                 )}
             </Draggable>

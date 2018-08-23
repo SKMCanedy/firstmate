@@ -19,7 +19,7 @@ const Title = styled.h3`
 const TaskList = styled.div`
     padding: 8px;
     transition: background-color 0.2s ease;
-    background-color: ${props=>(props.isDraggingOver ? "skyblue" : "white")};
+    background-color: ${props=>(props.isDraggingOver ? "blue" : "white")};
     flex-grow: 1;
     min-height: 8rem;
 `;
@@ -29,7 +29,6 @@ export class Column extends Component {
         const column=this.props.currentColumn
         const currentColumn = this.props.columns[column];
         const columnTasks = currentColumn.taskIds
-        console.log(currentColumn.id + ":" + columnTasks)
         
         return(
             <Container>
@@ -42,9 +41,9 @@ export class Column extends Component {
                             isDraggingOver={snapshot.isDraggingOver}
                         >
                             {columnTasks.map((task, index)=>{
-                                const taskKey = "tastKey"+task;
+                                const uniqueKey = "tastKey"+task;
                                 return(
-                                    <Task key={taskKey} currentTask={task} index={index}/>
+                                    <Task key={uniqueKey} currentTask={task} index={index}/>
                                 )
                             })}
                             {provided.placeholder}

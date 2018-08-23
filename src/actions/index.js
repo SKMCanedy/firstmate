@@ -46,6 +46,12 @@ export const addTask = (values)=>({
     values
 })
 
+export const DELETE_TASK = "DELETE_TASK";
+export const deleteTask = (currentTask)=>({
+    type: DELETE_TASK,
+    currentTask
+})
+
 
 export const ADD_COLUMN = "ADD_COLUMN";
 export const addColumn = (values)=>({

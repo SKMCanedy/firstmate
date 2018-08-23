@@ -85,8 +85,11 @@ class Modal extends React.Component {
             return( <AddColumnForm /> )
         }
 
-        if (this.props.modalType === "resetConfirmation"){
-            return(<Confirmation confirmType="reset"/>)
+        if (this.props.modalType === "resetConfirmation" || "logout"){
+            const confirmationType = this.props.modalType
+            console.log(confirmationType)
+            return(<Confirmation confirmType={confirmationType}/>)
+            
         }
 
         return ("uh oh something went wrong with determineContent function")
