@@ -29,16 +29,33 @@ export const dndEndNewColumn= (dndResults, start, finish)=>({
 
 //User Actions
 
+export const OPEN_MODAL = "OPEN_MODAL";
+export const openModal= (modalType)=>({
+    type: OPEN_MODAL,
+    modalType
+})
+
+export const CLOSE_MODAL = "CLOSE_MODAL";
+export const closeModal= ()=>({
+    type: CLOSE_MODAL
+})
+
 export const ADD_TASK = "ADD_TASK";
 export const addTask = (values)=>({
     type: ADD_TASK,
     values
 })
 
+
 export const ADD_COLUMN = "ADD_COLUMN";
 export const addColumn = (values)=>({
     type: ADD_COLUMN,
     values
+})
+
+export const RESET_BOARD = "RESET_BOARD";
+export const resetBoard = ()=>({
+    type: RESET_BOARD
 })
 
 

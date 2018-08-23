@@ -43,9 +43,8 @@ class Board extends Component {
         <Header />
         <Container>
             {this.props.columnOrder.map((columnId)=>{
-              const column = this.props.columns[columnId];
-              let tasks = column.taskIds.map(taskId=>this.props.tasks[taskId]);
-              return <Column key={column.id} column={column} tasks={tasks} />;
+              const columnKey = "columnKey"+columnId
+              return <Column key={columnKey} currentColumn={columnId} />;
             })}
           </Container>
       </DragDropContext>
@@ -60,3 +59,19 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Board);
+
+// render() {
+//   return (
+//     <DragDropContext onDragEnd={this.reviewDragEnd}>
+//       <Header />
+//       <Container>
+//           {this.props.columnOrder.map((columnId)=>{
+//             const column = this.props.columns[columnId];
+//             let tasks = column.taskIds.map(taskId=>this.props.tasks[taskId]);
+//             return <Column key={column.id} column={column} tasks={tasks} />;
+//           })}
+//         </Container>
+//     </DragDropContext>
+//   );
+// }
+// }

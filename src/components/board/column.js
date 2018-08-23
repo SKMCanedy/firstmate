@@ -25,19 +25,28 @@ const TaskList = styled.div`
 `;
 
 export class Column extends Component {
-
     render(){
+        const column=this.props.currentColumn
+        const currentColumn = this.props.columns[column];
+        const columnTasks = currentColumn.taskIds
+        console.log(currentColumn.id + ":" + columnTasks)
+        
         return(
             <Container>
-                <Title>{this.props.column.title}</Title>
-                <Droppable droppableId={this.props.column.id}>
+                <Title>{currentColumn.title}</Title>
+                <Droppable droppableId={currentColumn.id}>
                     {(provided, snapshot)=>(
                         <TaskList 
                             innerRef={provided.innerRef} 
                             {...provided.droppableProps}
                             isDraggingOver={snapshot.isDraggingOver}
                         >
-                            {this.props.tasks.map((task, index)=><Task key={task.id} task={task} index={index}/>)}
+                            {columnTasks.map((task, index)=>{
+                                const taskKey = "tastKey"+task;
+                                return(
+                                    <Task key={taskKey} currentTask={task} index={index}/>
+                                )
+                            })}
                             {provided.placeholder}
                         </TaskList>
                     )}
@@ -48,8 +57,29 @@ export class Column extends Component {
 }
 
 const mapStateToProps = state => ({
+    tasks: state.firstmate.tasks,
     columns: state.firstmate.columns,
     columnOrder: state.firstmate.columnOrder
   });
   
   export default connect(mapStateToProps)(Column);
+
+//   render(){
+//     return(
+//         <Container>
+//             <Title>{this.props.column.title}</Title>
+//             <Droppable droppableId={this.props.column.id}>
+//                 {(provided, snapshot)=>(
+//                     <TaskList 
+//                         innerRef={provided.innerRef} 
+//                         {...provided.droppableProps}
+//                         isDraggingOver={snapshot.isDraggingOver}
+//                     >
+//                         {this.props.tasks.map((task, index)=><Task key={task.id} task={task} index={index}/>)}
+//                         {provided.placeholder}
+//                     </TaskList>
+//                 )}
+//             </Droppable>
+//         </Container>
+//     )
+// }
