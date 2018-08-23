@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { closeModal } from "../../actions";
 import AddTaskForm from "./form-add-task";
 import AddColumnForm from "./form-add-column";
+import Confirmation from "./confirmation"
 
 const Background = styled.div`
     position: absolute;
@@ -82,7 +83,11 @@ class Modal extends React.Component {
 
         if (this.props.modalType === "columnModal"){
             return( <AddColumnForm /> )
-         }
+        }
+
+        if (this.props.modalType === "resetConfirmation"){
+            return(<Confirmation confirmType="reset"/>)
+        }
 
         return ("uh oh something went wrong with determineContent function")
     }
