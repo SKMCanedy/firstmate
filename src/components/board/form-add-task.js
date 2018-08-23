@@ -1,5 +1,5 @@
 import React from 'react';
-import {reduxForm, Field} from 'redux-form';
+import {reduxForm, Field, reset} from 'redux-form';
 
 import Input from '../general/input';
 import { required, nonEmpty } from '../../form-validators';
@@ -7,15 +7,19 @@ import { addTask } from "../../actions";
 
 export class AddTaskForm extends React.Component {
     onSubmit(values) {
-        //call an action with the values; reducer will add the task to tasks and processbank - {newTask: "this is my new task"}
-        //clear submit field
-        //success message
-        this.props.dispatch(addTask(values))
-        console.log(values)
+        this.props.dispatch(addTask(values));
+        this.props.dispatch(reset('addTaskForm'))
     }
 
     render() {
-
+        let successMessage;
+        if (this.props.submitSucceeded) {
+            successMessage = (
+                <div>
+                    Success! New process added.
+                </div>
+            )}
+        
         return (
             <form
                 onSubmit={this.props.handleSubmit(values =>
@@ -40,7 +44,7 @@ export class AddTaskForm extends React.Component {
                     disabled={this.props.pristine || this.props.submitting}>
                     Submit
                 </button>
-                {/* {successMessage} */}
+                {successMessage}
             </form>
         );
     }

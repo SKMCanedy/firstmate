@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Modal from "./modal"
 import logo from "../../images/icons8-ship-wheel-80.png"
-import { openModal } from "../../actions"
+import { openModal, resetBoard } from "../../actions"
 
 const Button = styled.button`
   background: green;
@@ -25,6 +25,11 @@ export class Header extends React.Component {
         console.log("Calling Column Modal");
         this.props.dispatch(openModal("columnModal"));
     }
+
+    resetTasks = ()=>{
+        console.log("Reset Tasks Called");
+        this.props.dispatch(resetBoard());        
+    }
     
     render(){
         return(
@@ -33,9 +38,9 @@ export class Header extends React.Component {
                 <h1>Firstmate</h1>
                 <Button type="button" onClick={this.callTaskModal}>Add Process</Button>
                 <Button type="button" onClick={this.callColumnModal}>Add Staff</Button>
-                <div>Reset All</div>
+                <Button type="button" onClick={this.resetTasks}>Reset Processes</Button>
                 <div>Logout</div>
-                {this.props.showModal && <Modal> This is my test modal </Modal>}
+                {this.props.showModal && <Modal/>}
             </div>
         )
     }

@@ -130,25 +130,62 @@ const firstmateReducer = (state=initialState, action)=>{
     }
 
     if (action.type === actions.ADD_TASK){
-        //takes new task and puts into process bank (task1)
         console.log("Add Task action worked!");
         const taskIndex = Object.keys(state.tasks).length + 1;
         const newTask = 'task' + taskIndex;
-        // return Object.assign({}, state, {});
         return Object.assign({}, state, {
             tasks: {
                ...state.tasks,
                [newTask]:{id: newTask, content: action.values.newTask},
             },
             columns: {
+                ...state.columns,
                 "column1": {
+                    ...state.columns.column1,
                     taskIds: [...state.columns.column1.taskIds, newTask] 
                 }
             }
         });
     }
+
     if (action.type === actions.ADD_COLUMN){
         //takes new column (staff card) and put on screen
+        console.log("Add Column action worked!");
+        const columnIndex = Object.keys(state.columns).length + 1;
+        const newColumn = 'column' + columnIndex;
+        return Object.assign({}, state, {
+            columns: {
+                ...state.columns,
+                [newColumn]: {
+                    id:newColumn,
+                    title: action.values.newColumn,
+                    taskIds: []
+                }
+            },
+            columnOrder: [...state.columnOrder, newColumn]
+        });
+    }
+
+    if (action.type === actions.RESET_BOARD){
+        console.log("Reset board action worked");
+        const allTasks = Object.keys(state.tasks);
+        const colName = Object.keys(state.columns);
+        const colObject = {
+            columns:{}
+        }
+        colName.forEach(col=>{
+            colObject.columns[col]={
+                ...state.columns[col],
+                taskIds:[]
+            }
+        })
+        
+        colObject.columns.column1 = {
+            ...state.columns.column1,
+            taskIds:allTasks
+        }
+        console.log(colObject);
+        return Object.assign({}, state, colObject)
     }
     
     //---Server Interactions--

@@ -46,10 +46,16 @@ export const addTask = (values)=>({
     values
 })
 
+
 export const ADD_COLUMN = "ADD_COLUMN";
 export const addColumn = (values)=>({
     type: ADD_COLUMN,
     values
+})
+
+export const RESET_BOARD = "RESET_BOARD";
+export const resetBoard = ()=>({
+    type: RESET_BOARD
 })
 
 
