@@ -26,8 +26,6 @@ export class Header extends React.Component {
         this.props.dispatch(openModal("columnModal"));
     }
 
-
-
     resetTasks = ()=>{
         console.log("Reset Tasks Called");
         this.props.dispatch(openModal("resetConfirmation"));        

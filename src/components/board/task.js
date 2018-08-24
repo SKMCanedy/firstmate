@@ -27,7 +27,6 @@ export class Task extends Component{
     render(){
         const taskKey = this.props.currentTask
         const currentTask = this.props.tasks[taskKey];
-        const buttonName = "button-"+ taskKey;
 
         return(
             <Draggable draggableId={currentTask.id} index={this.props.index}>
@@ -39,7 +38,7 @@ export class Task extends Component{
                         isDragging={snapshot.isDragging}
                     >
                         {currentTask.content}
-                        <DeleteButton name={buttonName} onClick={()=>this.callDeleteTask(currentTask.id)}>X</DeleteButton>
+                        <DeleteButton onClick={()=>this.callDeleteTask(currentTask.id)}>X</DeleteButton>
                     </Container>
                 )}
             </Draggable>

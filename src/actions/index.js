@@ -30,9 +30,10 @@ export const dndEndNewColumn= (dndResults, start, finish)=>({
 //User Actions
 
 export const OPEN_MODAL = "OPEN_MODAL";
-export const openModal= (modalType)=>({
+export const openModal= (modalType,values)=>({
     type: OPEN_MODAL,
-    modalType
+    modalType,
+    values
 })
 
 export const CLOSE_MODAL = "CLOSE_MODAL";
@@ -57,6 +58,12 @@ export const ADD_COLUMN = "ADD_COLUMN";
 export const addColumn = (values)=>({
     type: ADD_COLUMN,
     values
+})
+
+export const DELETE_COLUMN = "DELETE_COLUMN";
+export const deleteColumn = (columnId)=>({
+    type: DELETE_COLUMN,
+    columnId
 })
 
 export const RESET_BOARD = "RESET_BOARD";

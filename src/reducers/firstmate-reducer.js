@@ -150,7 +150,20 @@ const firstmateReducer = (state=initialState, action)=>{
 
     if (action.type === actions.DELETE_TASK){
         console.log("Delete Task action worked")
-        return Object.assign({}, state, {})
+        const deletedTask = action.currentTask;
+        const stateCopy = JSON.parse(JSON.stringify( state ));
+        delete stateCopy.tasks[deletedTask];
+        const columnArray = stateCopy.columnOrder;
+        for (let index=1; index<=columnArray.length; index++){
+            const columnName = "column"+index;
+            const columnObject = stateCopy.columns[columnName]
+            const taskIdArray = columnObject.taskIds;
+            if (taskIdArray.includes(action.currentTask)){
+                const taskIndex = taskIdArray.indexOf(action.currentTask);
+                taskIdArray.splice(taskIndex,1)
+            }
+        }
+        return Object.assign({}, state, stateCopy)
     }
 
     if (action.type === actions.ADD_COLUMN){
@@ -169,6 +182,17 @@ const firstmateReducer = (state=initialState, action)=>{
             },
             columnOrder: [...state.columnOrder, newColumn]
         });
+    }
+
+    if (action.type === actions.DELETE_COLUMN){
+        console.log("Delete Column action worked!");
+        const stateCopy = JSON.parse(JSON.stringify( state ));
+        const columnIndex = stateCopy.columnOrder.indexOf(action.columnId)
+
+        delete stateCopy.columns[action.columnId];
+        stateCopy.columnOrder.splice(columnIndex,1)
+        
+        return Object.assign({}, state, stateCopy)
     }
 
     if (action.type === actions.RESET_BOARD){
@@ -196,7 +220,6 @@ const firstmateReducer = (state=initialState, action)=>{
     //---Server Interactions--
     if (action.type === actions.UPDATE_SERVER_BOARD){
         console.log("Update Server Board action worked")
-        console.log(action.currentTask)
         //add post connection to api/board
     }
     

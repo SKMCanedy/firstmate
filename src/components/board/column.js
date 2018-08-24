@@ -4,6 +4,8 @@ import Task from "./task"
 import { Droppable } from "react-beautiful-dnd";
 import { connect } from 'react-redux';
 
+import { openModal } from "../../actions"
+
 const Container = styled.div`
     margin: 8px;
     border: 1px solid lightgrey;
@@ -24,7 +26,24 @@ const TaskList = styled.div`
     min-height: 8rem;
 `;
 
+const DeleteButton = styled.button`
+    float: right;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+`
+
 export class Column extends Component {
+    callDeleteColumn=(columnId)=>{
+        const columnObject=this.props.columns[columnId]
+        console.log(columnObject.taskIds.length)
+        //checks for processes. If has them, will alert that it cannot be deleted
+        if (columnObject.taskIds.length > 0){
+            this.props.dispatch(openModal("hasTasksWarning"));
+            return;
+        }
+        this.props.dispatch(openModal("deleteConfirmation"));//prompts modal to confirm before deletion
+    }
     render(){
         const column=this.props.currentColumn
         const currentColumn = this.props.columns[column];
@@ -32,7 +51,10 @@ export class Column extends Component {
         
         return(
             <Container>
-                <Title>{currentColumn.title}</Title>
+                <Title>
+                    <DeleteButton onClick={()=>this.callDeleteColumn(currentColumn.id)}>X</DeleteButton>
+                    {currentColumn.title}
+                </Title>
                 <Droppable droppableId={currentColumn.id}>
                     {(provided, snapshot)=>(
                         <TaskList 

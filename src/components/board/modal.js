@@ -6,7 +6,8 @@ import styled from "styled-components";
 import { closeModal } from "../../actions";
 import AddTaskForm from "./form-add-task";
 import AddColumnForm from "./form-add-column";
-import Confirmation from "./confirmation"
+import Confirmation from "./confirmation";
+import Warning from "./warning-message";
 
 const Background = styled.div`
     position: absolute;
@@ -77,6 +78,7 @@ class Modal extends React.Component {
     }
 
     determineContent = ()=>{
+        console.log(this.props.modalType)
         if (this.props.modalType === "taskModal"){
            return( <AddTaskForm /> )
         }
@@ -85,14 +87,19 @@ class Modal extends React.Component {
             return( <AddColumnForm /> )
         }
 
-        if (this.props.modalType === "resetConfirmation" || "logout"){
+        if (this.props.modalType === "resetConfirmation" || this.props.modalType==="logout" || this.props.modalType==="deleteConfirmation"){
+            console.log("confirmation if statement accessed")
             const confirmationType = this.props.modalType
-            console.log(confirmationType)
-            return(<Confirmation confirmType={confirmationType}/>)
-            
+            return(<Confirmation confirmType={confirmationType} values={this.props.values} />)
         }
 
-        return ("uh oh something went wrong with determineContent function")
+        if (this.props.modalType === "hasTasksWarning"){
+            console.log("hastaskswarning if statement accessed");
+            const type = this.props.modalType
+            return (<Warning warningType={type} />)
+        }
+
+        return ("There has been an error")
     }
     render(){
         return ReactDOM.createPortal(this._renderModal(),this.element)
