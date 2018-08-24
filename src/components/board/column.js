@@ -84,23 +84,3 @@ const mapStateToProps = state => ({
   });
   
   export default connect(mapStateToProps)(Column);
-
-//   render(){
-//     return(
-//         <Container>
-//             <Title>{this.props.column.title}</Title>
-//             <Droppable droppableId={this.props.column.id}>
-//                 {(provided, snapshot)=>(
-//                     <TaskList 
-//                         innerRef={provided.innerRef} 
-//                         {...provided.droppableProps}
-//                         isDraggingOver={snapshot.isDraggingOver}
-//                     >
-//                         {this.props.tasks.map((task, index)=><Task key={task.id} task={task} index={index}/>)}
-//                         {provided.placeholder}
-//                     </TaskList>
-//                 )}
-//             </Droppable>
-//         </Container>
-//     )
-// }

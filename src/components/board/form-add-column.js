@@ -16,7 +16,7 @@ export class AddColumnForm extends React.Component {
         if (this.props.submitSucceeded) {
             successMessage = (
                 <div>
-                    Success! New process added.
+                    Success! New Staff Member has been added.
                 </div>
             )}
         

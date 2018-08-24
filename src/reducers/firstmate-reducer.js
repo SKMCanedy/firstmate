@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import * as actions from "../actions";
 
 const initialState = {
@@ -220,7 +222,17 @@ const firstmateReducer = (state=initialState, action)=>{
     //---Server Interactions--
     if (action.type === actions.UPDATE_SERVER_BOARD){
         console.log("Update Server Board action worked")
-        //add post connection to api/board
+        //Updates main board. In future iterations, the action will be set up to take in the board id
+        //so a custom url can be inputted
+        const stateData = state;
+        const authInfo = { "Authorization": `Bearer ${localStorage.getItem("token")}` }
+        axios.put("http://localhost:8080/api/board/5b7ce32657a288a4134d45a0", stateData, {headers: authInfo})
+    }
+
+    if (action.type === actions.LOAD_BOARD){
+        console.log("Load Board worked")
+        console.log(action.board)
+        return Object.assign({}, state, action.board);
     }
     
     return state;
