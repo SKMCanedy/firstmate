@@ -20,13 +20,12 @@ export class Board extends Component {
     //load main board -- in future iterations this section will be configured to load a board of the user's choosing
     axios.get("http://localhost:8080/api/board/5b7ce32657a288a4134d45a0", {headers: authInfo})
             .then((res) => {
-              console.log(res)
               //load board from server
               this.props.dispatch(loadBoard(res.data))
             })
             .catch(err => {
                 console.log(err.response)
-                return ("Uh oh error getting board info from server")
+                return ("Error loading data")
             });
   }
 
@@ -48,6 +47,7 @@ export class Board extends Component {
         
         if (start === finish){
             this.props.dispatch(dndEndSameColumn(result, start)) // Draggable stays in the same column/droppable
+            this.props.dispatch(updateServerBoard());
         } else {
             this.props.dispatch(dndEndNewColumn(result, start, finish)); // Draggable is in a different column/droppable
             this.props.dispatch(updateServerBoard());

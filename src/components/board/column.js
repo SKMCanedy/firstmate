@@ -4,7 +4,7 @@ import Task from "./task"
 import { Droppable } from "react-beautiful-dnd";
 import { connect } from 'react-redux';
 
-import { openModal } from "../../actions"
+import { openModal, updateServerBoard } from "../../actions"
 
 const Container = styled.div`
     margin: 8px;
@@ -36,13 +36,21 @@ const DeleteButton = styled.button`
 export class Column extends Component {
     callDeleteColumn=(columnId)=>{
         const columnObject=this.props.columns[columnId]
-        console.log(columnObject.taskIds.length)
         //checks for processes. If has them, will alert that it cannot be deleted
         if (columnObject.taskIds.length > 0){
             this.props.dispatch(openModal("hasTasksWarning"));
             return;
         }
-        this.props.dispatch(openModal("deleteConfirmation"));//prompts modal to confirm before deletion
+
+        this.props.dispatch(openModal("deleteConfirmation", columnId));//prompts modal to confirm before deletion
+        this.props.dispatch(updateServerBoard());
+    }
+    showDeleteButton (colId){
+        if (colId === "column1"){
+            return;
+        }
+        // return(<DeleteButton />
+        return (<DeleteButton onClick={()=>this.callDeleteColumn(colId)}>X</DeleteButton>)
     }
     render(){
         const column=this.props.currentColumn
@@ -52,7 +60,7 @@ export class Column extends Component {
         return(
             <Container>
                 <Title>
-                    <DeleteButton onClick={()=>this.callDeleteColumn(currentColumn.id)}>X</DeleteButton>
+                    {this.showDeleteButton(currentColumn.id)}
                     {currentColumn.title}
                 </Title>
                 <Droppable droppableId={currentColumn.id}>
