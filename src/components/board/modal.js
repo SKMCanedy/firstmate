@@ -78,7 +78,6 @@ class Modal extends React.Component {
     }
 
     determineContent = ()=>{
-        console.log(this.props.modalType)
         if (this.props.modalType === "taskModal"){
            return( <AddTaskForm /> )
         }
@@ -88,13 +87,11 @@ class Modal extends React.Component {
         }
 
         if (this.props.modalType === "resetConfirmation" || this.props.modalType==="logout" || this.props.modalType==="deleteConfirmation"){
-            console.log("confirmation if statement accessed")
             const confirmationType = this.props.modalType
             return(<Confirmation confirmType={confirmationType} values={this.props.values} />)
         }
 
         if (this.props.modalType === "hasTasksWarning"){
-            console.log("hastaskswarning if statement accessed");
             const type = this.props.modalType
             return (<Warning warningType={type} />)
         }

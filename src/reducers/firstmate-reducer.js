@@ -1,39 +1,13 @@
+import axios from "axios";
+
 import * as actions from "../actions";
 
 const initialState = {
     id: "5b7ce32657a288a4134d45a0",
-    tasks: {
-        "task1":{id:"task1", content: "Practice Process 1"},
-        "task2":{id:"task2", content: "Practice Process 2"},
-        "task3":{id:"task3", content: "Practice Process 3"},
-        "task4":{id:"task4", content: "Practice Process 4"},
-    },
-
-    columns: {
-        "column1": {
-            id:"column1",
-            title: "Process Bank",
-            taskIds: ["task1", "task2", "task3", "task4"] 
-        },
-        "column2": {
-            id:"column2",
-            title: "Practice Staff 1",
-            taskIds: [] 
-        },
-        "column3": {
-            id:"column3",
-            title: "Practice Staff 2",
-            taskIds: [] 
-        },
-
-    },
-
-    columnOrder: ["column1", "column2", "column3"],
-
-    modalStatus: {
-        showModal: false,
-        modalType: ""
-    }
+    tasks: {},
+    columns: {},
+    columnOrder: [],
+    modalStatus: {}
 }
 
 const firstmateReducer = (state=initialState, action)=>{
@@ -114,7 +88,8 @@ const firstmateReducer = (state=initialState, action)=>{
         return Object.assign({}, state, {
             modalStatus: {
                 showModal: true,
-                modalType: action.modalType
+                modalType: action.modalType,
+                values: action.values
             }
         });
     }
@@ -186,12 +161,13 @@ const firstmateReducer = (state=initialState, action)=>{
 
     if (action.type === actions.DELETE_COLUMN){
         console.log("Delete Column action worked!");
+        console.log(action.columnId)
         const stateCopy = JSON.parse(JSON.stringify( state ));
         const columnIndex = stateCopy.columnOrder.indexOf(action.columnId)
 
         delete stateCopy.columns[action.columnId];
         stateCopy.columnOrder.splice(columnIndex,1)
-        
+        console.log(stateCopy)
         return Object.assign({}, state, stateCopy)
     }
 
@@ -218,9 +194,18 @@ const firstmateReducer = (state=initialState, action)=>{
     }
     
     //---Server Interactions--
+    if (action.type === actions.LOAD_BOARD){
+        console.log("Load Board worked")
+        return Object.assign({}, state, action.board);
+    }
+
     if (action.type === actions.UPDATE_SERVER_BOARD){
         console.log("Update Server Board action worked")
-        //add post connection to api/board
+        //Updates main board. In future iterations, the action will be set up to take in the board id
+        //so a custom url can be inputted
+        const stateData = state;
+        const authInfo = { "Authorization": `Bearer ${localStorage.getItem("token")}` }
+        axios.put("http://localhost:8080/api/board/5b7ce32657a288a4134d45a0", stateData, {headers: authInfo})
     }
     
     return state;

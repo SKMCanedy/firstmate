@@ -2,16 +2,32 @@ import React, { Component } from 'react';
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import { connect } from 'react-redux';
+import axios from "axios";
 
 import Column from "./column";
-import { dndEndSameColumn, dndEndNewColumn, updateServerBoard } from "../../actions"
+import { dndEndSameColumn, dndEndNewColumn, updateServerBoard, loadBoard } from "../../actions"
 import Header from "./header";
 
 const Container = styled.div`
   display: flex;
 `
 
-class Board extends Component {
+export class Board extends Component {
+
+  componentDidMount(){
+    console.log("Board mounted!!")
+    const authInfo = { "Authorization": `Bearer ${localStorage.getItem("token")}` }
+    //load main board -- in future iterations this section will be configured to load a board of the user's choosing
+    axios.get("http://localhost:8080/api/board/5b7ce32657a288a4134d45a0", {headers: authInfo})
+            .then((res) => {
+              //load board from server
+              this.props.dispatch(loadBoard(res.data))
+            })
+            .catch(err => {
+                console.log(err.response)
+                return ("Error loading data")
+            });
+  }
 
   reviewDragEnd = result => {
         const { destination, source } = result;
@@ -31,6 +47,7 @@ class Board extends Component {
         
         if (start === finish){
             this.props.dispatch(dndEndSameColumn(result, start)) // Draggable stays in the same column/droppable
+            this.props.dispatch(updateServerBoard());
         } else {
             this.props.dispatch(dndEndNewColumn(result, start, finish)); // Draggable is in a different column/droppable
             this.props.dispatch(updateServerBoard());

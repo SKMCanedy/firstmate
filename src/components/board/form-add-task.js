@@ -3,7 +3,8 @@ import {reduxForm, Field, reset} from 'redux-form';
 
 import Input from '../general/input';
 import { required, nonEmpty } from '../../form-validators';
-import { addTask } from "../../actions";
+import { addTask, updateServerBoard } from "../../actions";
+import { connect } from 'react-redux';
 
 export class AddTaskForm extends React.Component {
     state = { 
@@ -18,6 +19,7 @@ export class AddTaskForm extends React.Component {
                     Success! New process added.
                 </div>
             )})
+        this.props.dispatch(updateServerBoard());
         this.props.dispatch(reset('addTaskForm'))
     }
 
@@ -58,6 +60,14 @@ export class AddTaskForm extends React.Component {
     }
 }
 
-export default reduxForm({
+const mapStateToProps = state => ({
+    tasks: state.firstmate.tasks,
+    columns: state.firstmate.columns,
+    columnOrder: state.firstmate.columnOrder
+  });
+  
+const formConnect = reduxForm({
     form: 'addTaskForm',
 })(AddTaskForm);
+
+  export default connect(mapStateToProps)(formConnect);

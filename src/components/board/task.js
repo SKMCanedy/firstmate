@@ -20,7 +20,6 @@ const DeleteButton = styled.button`
 export class Task extends Component{
     
     callDeleteTask=(taskId)=>{
-        console.log(taskId)
         this.props.dispatch(deleteTask(taskId))
     }
 

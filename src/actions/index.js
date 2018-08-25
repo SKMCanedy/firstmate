@@ -78,3 +78,9 @@ export const UPDATE_SERVER_BOARD = "UPDATE_SERVER_BOARD";
 export const updateServerBoard= ()=>({
     type: UPDATE_SERVER_BOARD
 })
+
+export const LOAD_BOARD = "LOAD_BOARD"
+export const loadBoard = (serverBoard)=>({
+    type: LOAD_BOARD,
+    board: serverBoard
+})

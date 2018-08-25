@@ -1,13 +1,15 @@
 import React from 'react';
 import {reduxForm, Field, reset} from 'redux-form';
+import { connect } from 'react-redux';
 
 import Input from '../general/input';
 import { required, nonEmpty } from '../../form-validators';
-import { addColumn } from "../../actions";
+import { addColumn, updateServerBoard } from "../../actions";
 
 export class AddColumnForm extends React.Component {
     onSubmit(values) {
         this.props.dispatch(addColumn(values));
+        this.props.dispatch(updateServerBoard());
         this.props.dispatch(reset('addColumnForm'))
     }
 
@@ -16,7 +18,7 @@ export class AddColumnForm extends React.Component {
         if (this.props.submitSucceeded) {
             successMessage = (
                 <div>
-                    Success! New process added.
+                    Success! New Staff Member has been added.
                 </div>
             )}
         
@@ -49,6 +51,14 @@ export class AddColumnForm extends React.Component {
     }
 }
 
-export default reduxForm({
+const mapStateToProps = state => ({
+    tasks: state.firstmate.tasks,
+    columns: state.firstmate.columns,
+    columnOrder: state.firstmate.columnOrder
+  });
+  
+const formConnect = reduxForm({
     form: 'addColumnForm',
 })(AddColumnForm);
+
+export default connect(mapStateToProps)(formConnect);

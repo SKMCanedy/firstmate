@@ -6,7 +6,6 @@ import Modal from "./practice-modal-component"
 
 class PracticeModal extends React.Component {
     triggerModal=()=>{
-        console.log("Button clicked")
         this.props.dispatch(openModal());
     }
 
