@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 
 import About from "./about";
@@ -8,50 +9,94 @@ import HomeMenu from "./home-menu";
 import ScrollDown from "./scroll-down";
 import ScrollUp from "./scroll-up";
 
-import "./homepage.css";
+import loginImage from "../../images/bkgd-shipdeck-credit-Bobby-Burch.jpg";
+import smLoginImage from "../../images/bkgd-sm-shipdeck-credit-Bobby-Burch.jpg";
+import aboutImage from "../../images/bkgd-shipwheel-credit-joseph-barrientos.jpg";
+import smAboutImage from "../../images/bkgd-sm-shipwheel-credit-joseph-barrientos.jpg";
+import newuserImage from "../../images/bkgd-shipcrew-credit-stijn-swinnen.jpg";
+import smNewuserImage from "../../images/bkgd-sm-shipcrew-credit-stijn-swinnen.jpg";
+import deleteIcon from "../../images/delete-cream.png";
 
-const anchorLinks = {
-    "signin":"#signin",
-    "about": "#about",
-    "signup": "#signup"
-}
+const LandingPageContainer = styled.div`
+    font-family: 'Headland One', serif;
+    color: #fff0d2
+`
+const LoginContainer = styled.div`
+    border: 2px dashed black;
+    width: 100vw;
+    height: 100vh;
+    background-size: 100vh;
+    background-image: url(${smLoginImage});
+    overflow: auto;
+
+    @media (min-width: 790px) {
+        background-size: 100vw;
+    }
+
+    @media (min-width: 1200px) {
+        background-size: 100vw;
+        background-image: url(${loginImage});
+    }
+`
+const AboutContainer = styled.div`
+    border: 2px dashed black;
+    width: 100vw;
+    height: 100vh;
+    background-size: 100vh;
+    background-image: url(${smAboutImage});
+    overflow: auto;
+
+    @media (min-width: 790px) {
+        background-size: 100vw;
+    }
+
+    @media (min-width: 1200px) {
+        background-size: 100vw;
+        background-image: url(${aboutImage});
+    }
+`
+const NewUserContainer = styled.div`
+    border: 2px dashed black;
+    width: 100vw;
+    height: 100vh;
+    background-size: 100vh;
+    background-image: url(${smNewuserImage});
+    overflow: auto;
+
+    @media (min-width: 790px) {
+        background-size: 100vw;
+    }
+
+    @media (min-width: 1200px) {
+        background-size: 100vw;
+        background-image: url(${newuserImage});
+    }
+`
 
 export default function Homepage(props) {
+    const anchorLinks = {
+        "login":"#login",
+        "about": "#about",
+        "signup": "#signup"
+    }
+
     return(
-        <div>
-            <div className="container">
-                <div>
-                    <div className="item navbar" id="signin">
-                        <HomeMenu anchorLink={anchorLinks}/>
-                    </div>
-                </div>
-                <h1> Firstmate </h1>
-                <div className="item">
-                    <Login />
-                </div>
-                <div className="item scroll-down">
-                    <ScrollDown anchorLink={anchorLinks.about}/>
-                </div>
-            </div>
-            <div className="container" id="about">
-                <div className="item scroll-up">
-                    <ScrollUp anchorLink={anchorLinks.signin}/>
-                </div>
-                <div className="item">
-                    <About />
-                </div>
-                <div className="item scroll-down">
-                    <ScrollDown anchorLink={anchorLinks.signup}/>
-                </div>
-            </div>
-            <div className="container" id="signup">
-                <div className="item scroll-up">
-                    <ScrollUp anchorLink={anchorLinks.about}/>
-                </div>
-                <div className="item">
-                    <NewUser />
-                </div>
-            </div>
-        </div>
+        <LandingPageContainer>
+            <HomeMenu anchorLink={anchorLinks}/>
+            <LoginContainer id="login">
+                <Login />   
+            </LoginContainer>
+            <AboutContainer id="about">
+                <About />
+            </AboutContainer>
+            <NewUserContainer id="signup">
+                <NewUser />
+            </NewUserContainer>
+        </LandingPageContainer>
     )
 }
+
+{/* <ScrollDown anchorLink={anchorLinks.about} className="item scroll-down"/>   
+                <ScrollUp anchorLink={anchorLinks.signin}/>
+                <ScrollDown anchorLink={anchorLinks.signup}/>
+                <ScrollUp anchorLink={anchorLinks.about}/> */}

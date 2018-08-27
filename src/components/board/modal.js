@@ -8,6 +8,7 @@ import AddTaskForm from "./form-add-task";
 import AddColumnForm from "./form-add-column";
 import Confirmation from "./confirmation";
 import Warning from "./warning-message";
+import closeIcon from "../../images/delete-darkblue.png"
 
 const Background = styled.div`
     position: absolute;
@@ -21,33 +22,44 @@ const Background = styled.div`
     justify-content: center;
 `
 const ModalWindow = styled.div`
-    background-color: white;
-    border-radius: 5px;
-    width: 30rem;
-    height: 10rem;
+    font-family: 'Headland One', serif;
+    background-image: linear-gradient(to bottom right, #ebd593, #dbbe3d);
+    border-radius: 10px;
+    width: 90%
+    height: 65%
     margin-right: 1rem;
     margin-left: 1rem;
     text-align: center;
+    @media (min-width: 450px) {
+        width: 30rem;
+        height: 20rem;
+    }
 `
 const CloseButton = styled.div`
     position: inline-block;
-    margin-right: .25%;
-    margin-top: .25%;
-    background-color: lightblue;
+    margin-right: .5rem;
+    margin-top: .5rem;
     border-radius: 5px;
-    width: 1rem;
-    height: 1rem;
     float: right;
-    text-align: center;
+
+    &:hover {
+        background-color: #fff0d2;
+    }
+
+    & img {
+        width: 2rem;
+        height: 2rem;
+    }
+
 `
 const Content = styled.div`
-    width: 80%
-    height: 80%
+    width: 80%;
+    height: 80%;
     margin: auto;
-    margin-top: 2%;
-    padding-top: 2%
+    margin-top: 5%;
+    padding-top: 2%;
     text-align: center;
-    border: 2px solid black;
+    color: #2b3e55;
 `
 
 class Modal extends React.Component {
@@ -105,7 +117,7 @@ class Modal extends React.Component {
         return(
             <Background onClick={this.triggerCloseModal}>
                 <ModalWindow onClick={e=>e.stopPropagation()}>
-                    <CloseButton type="button" onClick={this.triggerCloseModal}>X</CloseButton>
+                    <CloseButton type="button" onClick={this.triggerCloseModal}><img src={closeIcon} alt="delete icon" /></CloseButton>
                     <Content>{this.determineContent()}</Content>
                 </ModalWindow>
             </Background>

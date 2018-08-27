@@ -5,12 +5,64 @@ import { connect } from 'react-redux';
 import axios from "axios";
 
 import Column from "./column";
+import ColumnBank from "./column-bank"
 import { dndEndSameColumn, dndEndNewColumn, updateServerBoard, loadBoard } from "../../actions"
 import Header from "./header";
 
+const All = styled.div`
+  background-image: linear-gradient(#2b3e55, #7798bb);
+  color: #fff0d2;
+  height: 100vh;
+  overflow: auto;
+  font-family: 'Headland One', serif;
+`
+const BoardContainer = styled.div`
+  position:relative;
+`
+
+const BankContainer = styled.div`
+  display: inline-block;
+  width: 100%;
+
+  @media (min-width: 600px) {
+    width: 35%;
+    position: absolute;
+    height: 100%;
+    margin-left: 3%;
+
+  }
+  @media (min-width: 1230px) {
+    width: 25%;
+  }
+`
+const StaffContainer = styled.div`
+  display: inline-block;
+  width: 100%;
+  min-height: 200vh;
+  @media (min-width: 600px) {
+    width: 62%;
+    margin-left: 38%;
+    
+  }
+  @media (min-width: 1230px) {
+    width: 72%;
+    margin-left: 28%;
+  }
+`
+
 const Container = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `
+
+const StaffTitle = styled.h2`
+  text-align: center;
+  font-size: 1.5rem;
+  @media (min-width: 600px) {
+      font-size: 1.75rem;
+  }
+`;
 
 export class Board extends Component {
 
@@ -54,20 +106,60 @@ export class Board extends Component {
         }
   }
 
+  loadBank=()=>{
+    const bankColumn = this.props.columnOrder.map((columnId)=>{
+      if (columnId === "column1"){
+        const columnKey = "columnKey"+columnId
+        return (
+            <ColumnBank key={columnKey} currentColumn={columnId} />
+        );    
+      };
+      return "";  
+    })
+
+    return bankColumn;
+  }
+
+  loadColumns=()=>{
+    const staffColumn = this.props.columnOrder.map((columnId)=>{
+        const columnKey = "columnKey"+columnId
+        if (columnId === "column1"){
+            return "";
+        }
+        
+        return(
+            <Column key={columnKey} currentColumn={columnId} />
+        )
+    })
+
+    return staffColumn;
+  }
+
   render() {
     return (
       <DragDropContext onDragEnd={this.reviewDragEnd}>
-        <Header />
-        <Container>
-            {this.props.columnOrder.map((columnId)=>{
-              const columnKey = "columnKey"+columnId
-              return <Column key={columnKey} currentColumn={columnId} />;
-            })}
-          </Container>
+        <All>
+            <Header />
+            <BoardContainer>
+                <BankContainer>
+                    {this.loadBank()}
+                </BankContainer>
+                <StaffContainer>
+                    <StaffTitle>
+                        Staff Members
+                    </StaffTitle>
+                    <Container>
+                        {this.loadColumns()}
+                    </Container>
+                </StaffContainer>
+            </BoardContainer>
+        </All>
       </DragDropContext>
     );
   }
 }
+
+
 
 const mapStateToProps = state => ({
   tasks: state.firstmate.tasks,
