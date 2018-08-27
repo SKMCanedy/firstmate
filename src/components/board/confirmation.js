@@ -1,9 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import styled from "styled-components";
+import styled from "styled-components";
 
 import { resetBoard, closeModal, deleteColumn, updateServerBoard } from "../../actions";
 
+const ConfirmContainer = styled.div`
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    & button {
+        font-family: 'Headland One', serif;
+        background-color: #2b3e55;
+        color: #fff0d2;
+        font-size: 1.25rem;
+        width: 8rem;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+        margin: 1rem;
+
+        &:hover {
+            background-color: #fff0d2;
+            color: #2b3e55;
+        }
+    }
+`
 
 export class Confirmation extends React.Component {
 
@@ -40,11 +61,11 @@ export class Confirmation extends React.Component {
 
     render(){
         return(
-            <div>
+            <ConfirmContainer>
                 <p>Are you sure?</p>
                 <button type="button" onClick={this.callCloseModal}>Cancel</button>
                 <button type="button" onClick={this.determineType}>Yes</button>
-            </div>
+            </ConfirmContainer>
         )
     }
 }

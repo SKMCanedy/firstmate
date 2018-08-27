@@ -127,17 +127,20 @@ const firstmateReducer = (state=initialState, action)=>{
         console.log("Delete Task action worked")
         const deletedTask = action.currentTask;
         const stateCopy = JSON.parse(JSON.stringify( state ));
-        delete stateCopy.tasks[deletedTask];
+        delete stateCopy.tasks[deletedTask]; //delete task object from "tasks"
         const columnArray = stateCopy.columnOrder;
-        for (let index=1; index<=columnArray.length; index++){
-            const columnName = "column"+index;
-            const columnObject = stateCopy.columns[columnName]
+
+        //find the column object that contains the task in it's taskIds array and remove it
+        columnArray.forEach((column)=>{
+            const columnObject = stateCopy.columns[column];
             const taskIdArray = columnObject.taskIds;
+
             if (taskIdArray.includes(action.currentTask)){
                 const taskIndex = taskIdArray.indexOf(action.currentTask);
                 taskIdArray.splice(taskIndex,1)
             }
-        }
+        });
+
         return Object.assign({}, state, stateCopy)
     }
 

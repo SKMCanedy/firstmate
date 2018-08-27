@@ -1,10 +1,32 @@
 import React from 'react';
 import {reduxForm, Field, reset} from 'redux-form';
+import styled from "styled-components";
 
-import Input from '../general/input';
-import { required, nonEmpty } from '../../form-validators';
+import Input from './form-input';
 import { addTask, updateServerBoard } from "../../actions";
 import { connect } from 'react-redux';
+
+const Button = styled.button`
+    font-family: 'Headland One', serif;
+    background-color: ${props=>(props.disabled ? "grey" : "#2b3e55")};
+    color: #fff0d2;
+    font-size: 1.25rem;
+    width: 8rem;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    margin: 1rem;
+
+    &:hover {
+        background-color: ${props=>(props.disabled ? "grey" : "#fff0d2")};
+        color: ${props=>(props.disabled ? "#fff0d2" : "#2b3e55")};
+    }
+`
+const SuccessMessage = styled.div`
+    margin-top: 1rem;
+    font-size: 1.25 rem;
+    font-weight: bold;
+`
 
 export class AddTaskForm extends React.Component {
     state = { 
@@ -15,9 +37,9 @@ export class AddTaskForm extends React.Component {
         this.props.dispatch(addTask(values))
         this.setState(
             {successMessage:(
-                <div>
-                    Success! New process added.
-                </div>
+                <SuccessMessage>
+                    Success! New process added to the process bank.
+                </SuccessMessage>
             )})
         this.props.dispatch(updateServerBoard());
         this.props.dispatch(reset('addTaskForm'))
@@ -37,23 +59,22 @@ export class AddTaskForm extends React.Component {
 
                 <Field
                     name="newTask"
-                    type="text"
+                    type="textarea"
                     component={Input}
-                    label="New Process"
-                    validate={[required, nonEmpty]}
+                    label="Add a new process"
                     onFocus={this.clearSuccessMessage}
                 />
-                <button 
+                <Button 
                     type="reset" 
                     disabled={this.props.submitting} 
                     onClick={this.props.reset}> 
                         Clear 
-                </button>              
-                <button
+                </Button>              
+                <Button
                     type="submit"
                     disabled={this.props.pristine || this.props.submitting}>
                     Submit
-                </button>
+                </Button>
                 {this.state.successMessage}
             </form>
         );
