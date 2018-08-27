@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import * as actions from "../actions";
+import { API_MAIN_BOARD_URL } from "../config";
 
 const initialState = {
     id: "5b7ce32657a288a4134d45a0",
@@ -208,7 +209,7 @@ const firstmateReducer = (state=initialState, action)=>{
         //so a custom url can be inputted
         const stateData = state;
         const authInfo = { "Authorization": `Bearer ${localStorage.getItem("token")}` }
-        axios.put("http://localhost:8080/api/board/5b7ce32657a288a4134d45a0", stateData, {headers: authInfo})
+        axios.put(API_MAIN_BOARD_URL, stateData, {headers: authInfo})
     }
     
     return state;

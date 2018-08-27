@@ -7,6 +7,7 @@ import axios from "axios";
 import Input from './form-input';
 import { required, nonEmpty } from './form-validators';
 import ContentContainer from "./content-container";
+import { API_AUTH_URL, BOARD_PAGE } from "../../config";
 
 const Button = styled.button`
     font-family: 'Headland One', serif;
@@ -41,7 +42,7 @@ export class Login extends React.Component {
             "username": values.loginUsername,
             "password": values.loginPassword
         }
-        return axios.post("http://localhost:8080/api/auth/login", loginValues)
+        return axios.post(API_AUTH_URL, loginValues)
             .then((res) => {
                 console.log(res)
                 localStorage.setItem("token", res.data.authToken);
@@ -60,7 +61,7 @@ export class Login extends React.Component {
 
         if (this.props.submitSucceeded) {
             console.log("Successful login")
-			window.location.replace("http://localhost:3000/board");
+			window.location.replace(BOARD_PAGE);
         }
 
         let errorMessage;

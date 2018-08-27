@@ -1,5 +1,7 @@
+//Individual processes that are draggable to "droppable" components (staff cards and process bank)
+
 import React,{Component} from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 

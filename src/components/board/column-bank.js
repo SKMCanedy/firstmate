@@ -1,8 +1,10 @@
+//Process Bank Component. "Droppable" component that can accept draggable components (processes/tasks)
+
 import React,{Component} from "react";
 import styled from "styled-components";
 import Task from "./task"
 import { Droppable } from "react-beautiful-dnd";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 const Container = styled.div`
     margin: auto;
@@ -12,6 +14,7 @@ const Container = styled.div`
 const Title = styled.h2`
     text-align: center;
     font-size: 1.5rem;
+    
     @media (min-width: 600px) {
         font-size: 1.75rem;
     }
@@ -23,20 +26,18 @@ const TaskList = styled.div`
     background-color: ${props=>(props.isDraggingOver ? "#3c5877" : "#8ea6be")};
     min-height: 2rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
     @media (min-width: 600px) {
         height: 90%;
       }
-    // @media (min-width: 1230px) {
-    //     height: 80%;
-    // }
 `;
 
 
 export class ColumnBank extends Component {
     render(){
-        const column=this.props.currentColumn
+        const column=this.props.currentColumn;
         const currentColumn = this.props.columns[column];
-        const columnTasks = currentColumn.taskIds
+        const columnTasks = currentColumn.taskIds;
         return(
             <Container>
                 <Title>

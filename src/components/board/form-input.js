@@ -1,4 +1,6 @@
-import React from 'react';
+//Form display details
+
+import React from "react";
 import styled from "styled-components";
 
 const FormInput = styled.div`

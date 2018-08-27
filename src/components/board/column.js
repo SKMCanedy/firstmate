@@ -1,8 +1,10 @@
+//Staff Cards. "Droppable" components that can accept draggable components (processes/tasks)
+
 import React,{Component} from "react";
 import styled from "styled-components";
 import Task from "./task"
 import { Droppable } from "react-beautiful-dnd";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import { openModal, updateServerBoard } from "../../actions"
 import deleteIcon from "../../images/delete-cream.png"

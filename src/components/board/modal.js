@@ -1,6 +1,9 @@
-import React from 'react';
+//"Modal" that is called by the board's buttons (add, logout, delete, reset). This calls in data from another component. 
+//Another root was added to index.html to create another DOM. Also some aria-related actions added to help with closing modal
+
+import React from "react";
 import ReactDOM from "react-dom";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import styled from "styled-components";
 
 import { closeModal } from "../../actions";
@@ -65,8 +68,8 @@ const Content = styled.div`
 class Modal extends React.Component {
     constructor (props){
         super(props);
-        this.element = document.createElement('div');
-        this.modalRoot = document.getElementById('modal-root');
+        this.element = document.createElement("div");
+        this.modalRoot = document.getElementById("modal-root");
         this.modalRoot.appendChild(this.element)
     }
 

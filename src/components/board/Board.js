@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
+//Main Component for the protected section of the App aka "Board"
+
+import React, { Component } from "react";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import axios from "axios";
 
 import Column from "./column";
 import ColumnBank from "./column-bank"
 import { dndEndSameColumn, dndEndNewColumn, updateServerBoard, loadBoard } from "../../actions"
 import Header from "./header";
+import { API_MAIN_BOARD_URL } from "../../config";
 
+
+// equivalent to css *
 const All = styled.div`
   background-image: linear-gradient(#2b3e55, #7798bb);
   color: #fff0d2;
@@ -16,6 +21,7 @@ const All = styled.div`
   overflow: auto;
   font-family: 'Headland One', serif;
 `
+
 const BoardContainer = styled.div`
   position:relative;
 `
@@ -70,7 +76,7 @@ export class Board extends Component {
     console.log("Board mounted!!")
     const authInfo = { "Authorization": `Bearer ${localStorage.getItem("token")}` }
     //load main board -- in future iterations this section will be configured to load a board of the user's choosing
-    axios.get("http://localhost:8080/api/board/5b7ce32657a288a4134d45a0", {headers: authInfo})
+    axios.get(API_MAIN_BOARD_URL, {headers: authInfo})
             .then((res) => {
               //load board from server
               this.props.dispatch(loadBoard(res.data))
@@ -106,6 +112,7 @@ export class Board extends Component {
         }
   }
 
+  //looks for column1 which is the process bank so it can load it into it's own component
   loadBank=()=>{
     const bankColumn = this.props.columnOrder.map((columnId)=>{
       if (columnId === "column1"){
@@ -120,6 +127,7 @@ export class Board extends Component {
     return bankColumn;
   }
 
+  //loads all staff member cards
   loadColumns=()=>{
     const staffColumn = this.props.columnOrder.map((columnId)=>{
         const columnKey = "columnKey"+columnId

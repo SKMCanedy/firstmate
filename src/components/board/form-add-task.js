@@ -1,10 +1,12 @@
-import React from 'react';
-import {reduxForm, Field, reset} from 'redux-form';
+//Form that is loaded into modal when Add Process button pressed. Also dispatches actions upon user input
+
+import React from "react";
+import {reduxForm, Field, reset} from "redux-form";
 import styled from "styled-components";
 
-import Input from './form-input';
+import Input from "./form-input";
 import { addTask, updateServerBoard } from "../../actions";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 const Button = styled.button`
     font-family: 'Headland One', serif;
@@ -42,7 +44,7 @@ export class AddTaskForm extends React.Component {
                 </SuccessMessage>
             )})
         this.props.dispatch(updateServerBoard());
-        this.props.dispatch(reset('addTaskForm'))
+        this.props.dispatch(reset("addTaskForm"))
     }
 
     clearSuccessMessage=()=>{
@@ -88,7 +90,7 @@ const mapStateToProps = state => ({
   });
   
 const formConnect = reduxForm({
-    form: 'addTaskForm',
+    form: "addTaskForm",
 })(AddTaskForm);
 
   export default connect(mapStateToProps)(formConnect);

@@ -1,9 +1,11 @@
-import React from 'react';
-import {reduxForm, Field, reset} from 'redux-form';
-import { connect } from 'react-redux';
+//Form that is loaded into modal when Add Staff button pressed. Also dispatches actions upon user input
+
+import React from "react";
+import {reduxForm, Field, reset} from "redux-form";
+import { connect } from "react-redux";
 import styled from "styled-components";
 
-import Input from './form-input';
+import Input from "./form-input";
 import { addColumn, updateServerBoard } from "../../actions";
 
 const Button = styled.button`
@@ -42,7 +44,7 @@ export class AddColumnForm extends React.Component {
                 </SuccessMessage>
             )})
         this.props.dispatch(updateServerBoard());
-        this.props.dispatch(reset('addColumnForm'))
+        this.props.dispatch(reset("addColumnForm"))
     }
 
     clearSuccessMessage=()=>{
@@ -87,7 +89,7 @@ const mapStateToProps = state => ({
   });
   
 const formConnect = reduxForm({
-    form: 'addColumnForm',
+    form: "addColumnForm",
 })(AddColumnForm);
 
 export default connect(mapStateToProps)(formConnect);

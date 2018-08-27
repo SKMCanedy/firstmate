@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Input from './form-input';
 import { required, nonEmpty } from './form-validators';
 import ContentContainer from "./content-container";
+import { API_USER_URL } from "../../config";
 
 const Button = styled.button`
     font-family: 'Headland One', serif;
@@ -38,7 +39,7 @@ const ErrorMessage = styled.div`
 
 export class NewUser extends React.Component {
     onSubmit(values) {
-        return axios.post("http://localhost:8080/api/users", values)
+        return axios.post(API_USER_URL, values)
             .then((res) => {
                 this.props.dispatch(reset('newUser'))
             })

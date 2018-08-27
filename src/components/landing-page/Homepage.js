@@ -6,8 +6,6 @@ import About from "./about";
 import Login from "./login";
 import NewUser from "./new-user";
 import HomeMenu from "./home-menu";
-import ScrollDown from "./scroll-down";
-import ScrollUp from "./scroll-up";
 
 import loginImage from "../../images/bkgd-shipdeck-credit-Bobby-Burch.jpg";
 import smLoginImage from "../../images/bkgd-sm-shipdeck-credit-Bobby-Burch.jpg";

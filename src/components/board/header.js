@@ -1,5 +1,7 @@
+//Board Header with logo and action buttons
+
 import React from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import styled from "styled-components";
 
 import Modal from "./modal"

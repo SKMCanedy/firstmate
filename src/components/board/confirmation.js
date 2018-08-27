@@ -1,8 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
+//Confirmation to load into modal for deletions, process reset & log out. Also sets off actions based on type of request if confirmed
+
+import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 
 import { resetBoard, closeModal, deleteColumn, updateServerBoard } from "../../actions";
+import { LANDING_PAGE } from "../../config";
 
 const ConfirmContainer = styled.div`
     font-size: 1.5rem;
@@ -35,7 +38,6 @@ export class Confirmation extends React.Component {
     determineType=()=>{
         const confirmType = this.props.modalStatus.modalType;
         if (confirmType === "resetConfirmation"){
-            console.log("resetConfirmation if statement accessed")
             this.props.dispatch(resetBoard(this.props.modalStatus.values));
             this.props.dispatch(closeModal());
             this.props.dispatch(updateServerBoard());
@@ -43,20 +45,18 @@ export class Confirmation extends React.Component {
         }
 
         if (confirmType === "logout"){
-            console.log("logout if statement accessed")
             localStorage.setItem("token", "");
-            this.props.dispatch(closeModal())
-            window.location.replace("http://localhost:3000");
+            this.props.dispatch(closeModal());
+            window.location.replace(LANDING_PAGE);
             return;
         }
         if (confirmType === "deleteConfirmation"){
-            console.log("delete if statement accessed");
             this.props.dispatch(deleteColumn(this.props.modalStatus.values));
             this.props.dispatch(closeModal());
             this.props.dispatch(updateServerBoard());
             return;
         }
-        return (console.log("Cannot determine type of confirmation request"))
+        return (console.log("Cannot determine type of confirmation request"));
     }
 
     render(){
