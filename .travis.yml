@@ -7,6 +7,6 @@ deploy:
   provider: heroku
   api_key:
     secure: avGMbdZVj13Mv5/7FHrW5DsAC/weeEavKpGq9DchDRJ234PmP1nelWGPUB3QfY+Wjr3szFQ0RLhrb0qzhSowdmV0Fi17kFwDt+eyV8xj2rOZdQC+83eBWQabUNORQxS9jSNNbHEm8XazMiWU0joXSw2Jcwc3X4yS5v0oP9GB6LKxXKDzB2gGD5AX/h5nxTXWI+rO2RVkLJLx/d9XuWrpzTh11E4DZUFzeaOidDGDv1enSyvqiasnPf4jJVHWD1EurMQ8oZ1MMASDY7tYkUvGE9FsUPt+hadjG1ScyAhk7fwFgyHa4IS/LSb+7E/PP0aSjtdRYWgO6/AcX6fPtBHBHN4n0RLeLTaJGsaZfYjMttYAfDY56hx1aF9W1sL3js/drJwuXtrejxvTwDZeJc4zxebB92uq+Usx1QkYM37gtwUpt+MwikizgMzgQtGK0W5nxwo0oTcolzGG3qZozDl8hbNKa0Pk1yhAjru2AvW7aP/boB8YvzQ380Z5KjPPQk+++PZ/SniCj3fy7CODqt7UA46jVysMh979OCZJzVGWzSkoiC1ys02TluC2jJqDQZZ20dJtXyF0zx42bYkckfSdcspyeGk1ykvFA+5P0omsN8yy2GKAH0ticMFTm5zIx2KSgmj2A2lc1cpBRBaoBT/U5G445ha0K9bhxp4P0Vv1R6c=
-  app: frozen-anchorage-15149
+  app: firstmate-app
   on:
     repo: SKMCanedy/firstmate
