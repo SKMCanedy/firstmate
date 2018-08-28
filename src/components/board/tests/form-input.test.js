@@ -1,11 +1,11 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
+import {Provider} from 'react-redux';
 
 import Input from '../form-input';
 
 describe('<Input />', () => {
     it('Renders without crashing', () => {
-        const callback = jest.fn();
-        shallow(<Input meta={callback} input={callback}/>);
+        shallow(<Provider><Input /></Provider>);
     });
 })
