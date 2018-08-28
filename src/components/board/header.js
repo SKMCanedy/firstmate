@@ -79,17 +79,14 @@ const Button = styled.button`
 export class Header extends React.Component {
 
     callTaskModal= ()=>{
-        console.log("Calling Task Modal");
         this.props.dispatch(openModal("taskModal"));
     }
 
     callColumnModal= ()=>{
-        console.log("Calling Column Modal");
         this.props.dispatch(openModal("columnModal"));
     }
 
     resetTasks = ()=>{
-        console.log("Reset Tasks Called");
         this.props.dispatch(openModal("resetConfirmation"));        
     }
 

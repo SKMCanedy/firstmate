@@ -46,7 +46,6 @@ export class NewUser extends React.Component {
                 this.props.dispatch(reset('newUser'))
             })
             .catch(err => {
-                console.log(err.response)
                 return Promise.reject(
                     new SubmissionError({
                         _error: err.response.data.message

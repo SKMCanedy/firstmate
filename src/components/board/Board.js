@@ -81,7 +81,6 @@ export class Board extends Component {
               this.props.dispatch(loadBoard(res.data))
             })
             .catch(err => {
-                console.log(err.response)
                 return ("Error loading data")
             });
   }
