@@ -6,6 +6,6 @@ import Input from '../form-input';
 describe('<Input />', () => {
     it('Renders without crashing', () => {
         const callback = jest.fn();
-        mount(<Input meta={callback} input={callback}/>);
+        shallow(<Input meta={callback} input={callback}/>);
     });
 })

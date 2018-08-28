@@ -13,14 +13,6 @@ const initialState = {
 
 const firstmateReducer = (state=initialState, action)=>{
 
-    //---Landing Page Actions---
-
-    if (action.type === actions.LOGIN_SUCCESS){
-        return Object.assign({}, state, {
-            authenticated: true
-        });
-    }
-
     //---Board Actions---
 
     //Drag and Drop actions
@@ -85,7 +77,6 @@ const firstmateReducer = (state=initialState, action)=>{
 
     //User Actions
     if (action.type === actions.OPEN_MODAL){
-        console.log("Open Modal action worked!")
         return Object.assign({}, state, {
             modalStatus: {
                 showModal: true,
@@ -96,7 +87,6 @@ const firstmateReducer = (state=initialState, action)=>{
     }
 
     if (action.type === actions.CLOSE_MODAL){
-        console.log("Close Modal action worked!")
         return Object.assign({}, state, {
             modalStatus: {
                 showModal: false,
@@ -106,7 +96,6 @@ const firstmateReducer = (state=initialState, action)=>{
     }
 
     if (action.type === actions.ADD_TASK){
-        console.log("Add Task action worked!");
         const taskIndex = Object.keys(state.tasks).length + 1;
         const newTask = 'task' + taskIndex;
         return Object.assign({}, state, {
@@ -125,7 +114,6 @@ const firstmateReducer = (state=initialState, action)=>{
     }
 
     if (action.type === actions.DELETE_TASK){
-        console.log("Delete Task action worked")
         const deletedTask = action.currentTask;
         const stateCopy = JSON.parse(JSON.stringify( state ));
         delete stateCopy.tasks[deletedTask]; //delete task object from "tasks"
@@ -147,7 +135,6 @@ const firstmateReducer = (state=initialState, action)=>{
 
     if (action.type === actions.ADD_COLUMN){
         //takes new column (staff card) and put on screen
-        console.log("Add Column action worked!");
         const columnIndex = Object.keys(state.columns).length + 1;
         const newColumn = 'column' + columnIndex;
         return Object.assign({}, state, {
@@ -164,19 +151,15 @@ const firstmateReducer = (state=initialState, action)=>{
     }
 
     if (action.type === actions.DELETE_COLUMN){
-        console.log("Delete Column action worked!");
-        console.log(action.columnId)
         const stateCopy = JSON.parse(JSON.stringify( state ));
         const columnIndex = stateCopy.columnOrder.indexOf(action.columnId)
 
         delete stateCopy.columns[action.columnId];
         stateCopy.columnOrder.splice(columnIndex,1)
-        console.log(stateCopy)
         return Object.assign({}, state, stateCopy)
     }
 
     if (action.type === actions.RESET_BOARD){
-        console.log("Reset board action worked");
         const allTasks = Object.keys(state.tasks);
         const colName = Object.keys(state.columns);
         const colObject = {
@@ -193,18 +176,15 @@ const firstmateReducer = (state=initialState, action)=>{
             ...state.columns.column1,
             taskIds:allTasks
         }
-        console.log(colObject);
         return Object.assign({}, state, colObject)
     }
     
     //---Server Interactions--
     if (action.type === actions.LOAD_BOARD){
-        console.log("Load Board worked")
         return Object.assign({}, state, action.board);
     }
 
     if (action.type === actions.UPDATE_SERVER_BOARD){
-        console.log("Update Server Board action worked")
         //Updates main board. In future iterations, the action will be set up to take in the board id
         //so a custom url can be inputted
         const stateData = state;

@@ -73,7 +73,6 @@ const StaffTitle = styled.h2`
 export class Board extends Component {
 
   componentDidMount(){
-    console.log("Board mounted!!")
     const authInfo = { "Authorization": `Bearer ${localStorage.getItem("token")}` }
     //load main board -- in future iterations this section will be configured to load a board of the user's choosing
     axios.get(API_MAIN_BOARD_URL, {headers: authInfo})
@@ -82,7 +81,6 @@ export class Board extends Component {
               this.props.dispatch(loadBoard(res.data))
             })
             .catch(err => {
-                console.log(err.response)
                 return ("Error loading data")
             });
   }

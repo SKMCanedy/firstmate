@@ -28,13 +28,14 @@ export default function About (props) {
         <ContentContainer>
             <h2>About Firstmate</h2>
             <InfoContainer>
-                <p> Whether sailing the high seas or delivering a product to your customers, a well-functioning crew is crucial in helping you reach your destination.
-                    Firstmate is a tool to assist you with organizing your crew and keep your ship running. </p>
+                <p> Whether sailing the high seas or delivering a product to your customers, 
+                    a well-functioning crew is crucial in helping you reach your destination. 
+                    Firstmate is a tool to assist with organizing your crew and keeping your ship sailing. </p>
                 <p> Features include:</p>
                 <ul>
-                    <li> Easily designating and re-arranging staff work assignments (referred to as "processes") </li>
+                    <li> Easily designating and re-arranging staff work assignments (referred to as "processes") via drag and drop</li>
                     <li> Quickly adding and removing both staff and processes </li>
-                    <li> Staff has the ability to login and see the changes you have made to work assignments</li>
+                    <li> Staff have the ability to login with their own login and see the changes you have made to work assignments</li>
 
                 </ul>
 

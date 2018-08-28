@@ -1,14 +1,3 @@
-//---Landing Page Actions---
-export const LOGIN_SUBMIT = "LOGIN_SUBMIT";
-export const loginSubmit= ()=>({
-    type: LOGIN_SUBMIT,
-})
-
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const loginSuccess = ()=>({
-    type: LOGIN_SUCCESS,
-})
-
 //---Board Actions---
 
 //Drag and Drop actions

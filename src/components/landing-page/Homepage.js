@@ -15,14 +15,12 @@ import aboutImage from "../../images/bkgd-shipwheel-credit-joseph-barrientos.jpg
 import smAboutImage from "../../images/bkgd-sm-shipwheel-credit-joseph-barrientos.jpg";
 import newuserImage from "../../images/bkgd-shipcrew-credit-stijn-swinnen.jpg";
 import smNewuserImage from "../../images/bkgd-sm-shipcrew-credit-stijn-swinnen.jpg";
-import deleteIcon from "../../images/delete-cream.png";
 
 const LandingPageContainer = styled.div`
     font-family: 'Headland One', serif;
     color: #fff0d2
 `
 const LoginContainer = styled.div`
-    border: 2px dashed black;
     width: 100vw;
     height: 100vh;
     background-size: 100vh;
@@ -39,7 +37,6 @@ const LoginContainer = styled.div`
     }
 `
 const AboutContainer = styled.div`
-    border: 2px dashed black;
     width: 100vw;
     height: 100vh;
     background-size: 100vh;
@@ -56,7 +53,6 @@ const AboutContainer = styled.div`
     }
 `
 const NewUserContainer = styled.div`
-    border: 2px dashed black;
     width: 100vw;
     height: 100vh;
     background-size: 100vh;

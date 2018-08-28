@@ -46,11 +46,9 @@ export class Login extends React.Component {
         }
         return axios.post(API_AUTH_URL, loginValues)
             .then((res) => {
-                console.log(res)
                 localStorage.setItem("token", res.data.authToken);
             })
             .catch(err => {
-                console.log(err.response)
                 return Promise.reject(
                     new SubmissionError({
                         _error: "Invalid information. Please try again"
@@ -62,7 +60,6 @@ export class Login extends React.Component {
     render() {
 
         if (this.props.submitSucceeded) {
-            console.log("Successful login")
 			window.location.replace(BOARD_PAGE);
         }
 
@@ -107,6 +104,7 @@ export class Login extends React.Component {
                     </Button>
                     {errorMessage}
                 </form>
+                <p>Try me: Username: demo || Password: demopassword</p>
             </ContentContainer>
         );
     }
