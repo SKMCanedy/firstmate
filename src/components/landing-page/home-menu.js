@@ -1,3 +1,5 @@
+//Header task bar
+
 import React from "react";
 import styled from "styled-components";
 
@@ -25,8 +27,14 @@ const NavLink = styled.div `
     margin-right: 1rem;
     color: #fff0d2;
 
-    & :visited{
+    & a {
         color: #fff0d2;
+        text-decoration: none;        
+    }
+
+    & a:visited{
+        color: #fff0d2;
+        text-decoration: none;
     }
 
     & :hover{

@@ -1,3 +1,5 @@
+//Sets re-usable and consistent styles for the form inputs on the landing page.
+
 import React from 'react';
 import styled from "styled-components";
 
@@ -48,7 +50,6 @@ const Warning = styled.div`
     font-size: 1rem;
     font-weight: 900;
     color: orange;
-    // text-align: right;
 `
 
 export default class Input extends React.Component {

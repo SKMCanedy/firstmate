@@ -1,3 +1,5 @@
+//Sets re-usable styles for the content of each section on the landing page.
+
 import styled from "styled-components";
 
 const ContentContainer = styled.div`

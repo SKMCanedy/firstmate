@@ -4,7 +4,7 @@ import * as actions from "../actions";
 import { API_MAIN_BOARD_URL } from "../config";
 
 const initialState = {
-    id: "5b7ce32657a288a4134d45a0",
+    id: "",
     tasks: {},
     columns: {},
     columnOrder: [],

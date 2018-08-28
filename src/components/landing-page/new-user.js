@@ -1,3 +1,5 @@
+//Content for the Sign up section
+
 import React from 'react';
 import {reduxForm, Field, SubmissionError, reset} from 'redux-form';
 import axios from "axios";

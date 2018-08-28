@@ -1,3 +1,5 @@
+//Content for the login section
+
 import React from 'react';
 import {reduxForm, Field, SubmissionError} from 'redux-form';
 import styled from "styled-components";

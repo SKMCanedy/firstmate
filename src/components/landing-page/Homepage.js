@@ -1,3 +1,5 @@
+//Outlines layout and styles of landing page
+
 import React from "react";
 import styled from "styled-components";
 
@@ -93,8 +95,3 @@ export default function Homepage(props) {
         </LandingPageContainer>
     )
 }
-
-{/* <ScrollDown anchorLink={anchorLinks.about} className="item scroll-down"/>   
-                <ScrollUp anchorLink={anchorLinks.signin}/>
-                <ScrollDown anchorLink={anchorLinks.signup}/>
-                <ScrollUp anchorLink={anchorLinks.about}/> */}

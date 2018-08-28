@@ -1,3 +1,4 @@
+//provides basic rules for form validation
 export const required = value => (value ? undefined : 'Required');
 
 export const nonEmpty = value =>
