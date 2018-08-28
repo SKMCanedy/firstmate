@@ -1,18 +1,21 @@
 # About Firstmate
 
-Whether sailing the high seas or delivering a product to your customers, a well-functioning crew is crucial in helping you reach your destination. Firstmate is a tool to assist you with organizing your crew and keep your ship running.
+Whether sailing the high seas or delivering a product to your customers, a well-functioning crew is crucial in helping you reach your destination. Firstmate is a tool to assist with organizing your crew and keeping your ship sailing.
 
 Features include:
 
--Easily designating and re-arranging staff work assignments (referred to as "processes")
+-Easily designating and re-arranging staff work assignments (referred to as "processes") via drag and drop
+
 -Quickly adding and removing both staff and processes
--Staff has the ability to login and see the changes you have made to work assignments
+
+-Staff has the ability to login with their own login and see the changes you have made to work assignments
 
 ## Live Demo
 https://firstmate-app.herokuapp.com/
 
 Create your own login or use the demo login:
 >Username: demo
+
 >Password: demopassword
 
 ## Screenshots
@@ -74,35 +77,32 @@ Create your own login or use the demo login:
 ![Modal Desktop](screenshots/modal-full.png)
 
 ## Future Features
-* Administrative vs View Only Users
+* Administrative vs standard users
 
-  * View only can subscribe to a board but not modify it
+  * Standard users can subscribe to a board but not modify it
 
-  * Admins will have full control of a board as well as other users
+  * Admins will have full control of a board as well as other users subscribed to that board
 
 
-* Close/Open status
+* Option to create or subscribe to multiple boards
 
-* Exportable Reporting
+* Updating a board based on day (accessed through a calendar)
 
-* Summary Table
+* Multi-dragging tasks
+
+* Rearranging staff cards
+
 
 ## Built With
-* HTML
+* React
+  * Redux
 
-* CSS
+* Styled-components
 
-* Javascript
+* React-beautiful-dnd
 
-* JQuery
+* Redux form
 
-* Bootstrap
-
-* FooTable
-
-* Node.js/Express
-
-* Mongoose
 
 ### Live Environment
 * Heroku
@@ -112,9 +112,7 @@ Create your own login or use the demo login:
 * Travis-ci
 
 ### Testing
-* Mocha
-
-* Chai
+* Enzyme
 
 ## Author
 Shannon Canedy
