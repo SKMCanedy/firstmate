@@ -96,18 +96,28 @@ const firstmateReducer = (state=initialState, action)=>{
     }
 
     if (action.type === actions.ADD_TASK){
-        const taskIndex = Object.keys(state.tasks).length + 1;
-        const newTask = 'task' + taskIndex;
+        function createTaskId(){ //creates random id number
+            const randStr = Math.random().toString(36).substring(7);
+            const randNum = Math.floor((Math.random() * 100000) + 1);
+            let newTaskName = 'column' + randNum +randStr;
+
+            if (state.columnOrder.includes(newTaskName)){
+                newTaskName = newTaskId + randNum + randStr;
+            }
+            return newTaskName;
+        }
+
+        const newTaskId = createTaskId();
         return Object.assign({}, state, {
             tasks: {
                ...state.tasks,
-               [newTask]:{id: newTask, content: action.values.newTask},
+               [newTaskId]:{id: newTaskId, content: action.values.newTask},
             },
             columns: {
                 ...state.columns,
                 "column1": {
                     ...state.columns.column1,
-                    taskIds: [...state.columns.column1.taskIds, newTask] 
+                    taskIds: [...state.columns.column1.taskIds, newTaskId] 
                 }
             }
         });
@@ -134,19 +144,29 @@ const firstmateReducer = (state=initialState, action)=>{
     }
 
     if (action.type === actions.ADD_COLUMN){
-        //takes new column (staff card) and put on screen
-        const columnIndex = Object.keys(state.columns).length + 1;
-        const newColumn = 'column' + columnIndex;
+        //takes new column (staff card) and puts into state so can be displayed on screen
+        function createColumnId(){ //creates random id number
+            const randStr = Math.random().toString(36).substring(7);
+            const randNum = Math.floor((Math.random() * 100000) + 1);
+            let newColName = 'column' + randNum +randStr;
+
+            if (state.columnOrder.includes(newColName)){
+                newColName = newColName + randNum + randStr;
+            }
+            return newColName;
+        }
+
+        const newColId = createColumnId();
         return Object.assign({}, state, {
             columns: {
                 ...state.columns,
-                [newColumn]: {
-                    id:newColumn,
-                    title: action.values.newColumn,
+                [newColId]: {
+                    id:newColId,
+                    title: action.values.newColumn,//newColumn is the only key brought in through values
                     taskIds: []
                 }
             },
-            columnOrder: [...state.columnOrder, newColumn]
+            columnOrder: [...state.columnOrder, newColId]
         });
     }
 

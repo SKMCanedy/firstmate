@@ -82,20 +82,10 @@ describe('firstmateReducer', () => {
             let state;
             const values = {newTask:"test task details"};
             state = firstmateReducer(mockState, actions.addTask(values));
-            expect(state).toEqual({
-                ...mockState,
-                tasks: {
-                    ...mockState.tasks,
-                    task2:{id: "task2", content: "test task details"},
-                 },
-                 columns: {
-                    ...mockState.columns,
-                     "column1": {
-                        ...mockState.columns.column1,
-                         taskIds: [...mockState.columns.column1.taskIds,"task2"] 
-                     }
-                 }
-            });
+            const stateTaskArray = Object.keys(state.tasks);
+            const stateTaskLength = stateTaskArray.length;
+            expect(stateTaskLength).toEqual(2);
+            expect(state.columns.column1.taskIds.length).toEqual(2);
         });
     });
 
@@ -123,18 +113,10 @@ describe('firstmateReducer', () => {
             let state;
             const values = {newColumn:"test column name"};
             state = firstmateReducer(mockState, actions.addColumn(values));
-            expect(state).toEqual({
-                ...mockState,
-                columnOrder: ["column1", "column2"],
-                 columns: {
-                    ...mockState.columns,
-                    column2: {
-                        id: "column2",
-                        title: "test column name",
-                        taskIds: []
-                    }
-                 }
-            });
+            const stateColArray = Object.keys(state.columns);
+            const stateColLength = stateColArray.length;
+            expect(stateColLength).toEqual(2);
+    
         });
     });
 
