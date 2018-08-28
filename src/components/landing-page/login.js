@@ -104,6 +104,7 @@ export class Login extends React.Component {
                     </Button>
                     {errorMessage}
                 </form>
+                <p>Try me: Username: demo || Password: demopassword</p>
             </ContentContainer>
         );
     }

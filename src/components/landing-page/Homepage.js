@@ -21,7 +21,6 @@ const LandingPageContainer = styled.div`
     color: #fff0d2
 `
 const LoginContainer = styled.div`
-    border: 2px dashed black;
     width: 100vw;
     height: 100vh;
     background-size: 100vh;
@@ -38,7 +37,6 @@ const LoginContainer = styled.div`
     }
 `
 const AboutContainer = styled.div`
-    border: 2px dashed black;
     width: 100vw;
     height: 100vh;
     background-size: 100vh;
@@ -55,7 +53,6 @@ const AboutContainer = styled.div`
     }
 `
 const NewUserContainer = styled.div`
-    border: 2px dashed black;
     width: 100vw;
     height: 100vh;
     background-size: 100vh;
